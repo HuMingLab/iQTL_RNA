@@ -1,7 +1,7 @@
 # iQTL pipline for RNA-seq
 ## Allelic RNA-seq mapping for CCGG.
 
-Find the Hi-C pipeline [here](https://github.com/Xieeeee/AlleliC/).
+Find the Hi-C pipeline [here](ttps://github.com/lindsayhrlee/iQTL_HiC).
 Find the ATAC-seq pipeline [here](https://github.com/lindsayhrlee/iQTL_ATAC).
 
 ### Requirements
@@ -13,6 +13,7 @@ Find the ATAC-seq pipeline [here](https://github.com/lindsayhrlee/iQTL_ATAC).
     * Numpy v1.19.5
     * Pandas v1.1.5
 
+Be sure to index the fasta files via STAR prior to running this pipeline.
 
 ### Running the pipeline
 This pipeline can be run simply by:
