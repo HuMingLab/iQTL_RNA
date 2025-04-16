@@ -12,8 +12,13 @@ Find the ATAC-seq pipeline [here](https://github.com/lindsayhrlee/iQTL_ATAC).
 - Python v3.6.8
     * Numpy v1.19.5
     * Pandas v1.1.5
+ 
+### Required inputs
+- fasta file (with STAR index)
+- gtf file
+- annotation bed file
+- The fastq file should be named CC1xCC2_mousename_R1_*.fastq.gz
 
-Be sure to index the fasta files via STAR prior to running this pipeline.
 
 ### Running the pipeline
 This pipeline can be run simply by:
@@ -30,7 +35,8 @@ This pipeline can be run simply by:
 5.	fastq R1 = FASTQ file for R1
 6.	fastq R2 = FASTQ file for R2
 
-Here are the detailed steps to this pipeline:
+Here are the detailed steps to this pipeline: (Be sure to fill out all the locations for index, gff, fasta, and annotation files)
+
 Step 1: Indexing pseudo-genome fasta file using STAR
 	Input: pseudo-genome fasta file, annotation gtf file
 	Output: A folder that contains STAR indexing information
@@ -111,10 +117,10 @@ Step 6: sorting the BAM files and counting the reads
 	Output: a BED file that contains read counts
 ```
 samtools sort ${OUT}/unmapped_F1_total_reads/STAR_${CC1}/${CC1}_${mouse}_Aligned.out.bam -o ${OUT}/unmapped_F1_total_reads/STAR_${CC1}/sorted_${CC1}_${mouse}_Aligned.out.bam
-bedtools intersect -c -a /home/leeh7/iQTL/gff/chr_addaed_gff/${CC1}_unique_exon_annotation_ASE.BED -b ${OUT}/unmapped_F1_total_reads/STAR_${CC1}/sorted_${CC1}_${mouse}_Aligned.out.bam  > ${OUT}/unmapped_F1_total_reads/${CC1}_${mouse}_Counts.BED
+bedtools intersect -c -a /${CC1}_unique_exon_annotation_ASE.BED -b ${OUT}/unmapped_F1_total_reads/STAR_${CC1}/sorted_${CC1}_${mouse}_Aligned.out.bam  > ${OUT}/unmapped_F1_total_reads/${CC1}_${mouse}_Counts.BED
 
 samtools sort ${OUT}/unmapped_F1_total_reads/STAR_${CC2}/${CC2}_${mouse}_Aligned.out.bam -o ${OUT}/unmapped_F1_total_reads/STAR_${CC2}/sorted_${CC2}_${mouse}_Aligned.out.bam
-bedtools intersect -c -a /home/leeh7/iQTL/gff/chr_addaed_gff/${CC2}_unique_exon_annotation_ASE.BED -b ${OUT}/unmapped_F1_total_reads/STAR_${CC2}/sorted_${CC2}_${mouse}_Aligned.out.bam  > ${OUT}/unmapped_F1_total_reads/${CC2}_${mouse}_Counts.BED
+bedtools intersect -c -a /${CC2}_unique_exon_annotation_ASE.BED -b ${OUT}/unmapped_F1_total_reads/STAR_${CC2}/sorted_${CC2}_${mouse}_Aligned.out.bam  > ${OUT}/unmapped_F1_total_reads/${CC2}_${mouse}_Counts.BED
 ```
 Step 7: Merging all the read counts
 	Input: Read counts bed files from unique and multimapped 
