@@ -28,10 +28,10 @@ This pipeline can be run simply by:
 ```
 
  The required input variables are:
-1.	Mouse = The mouse ID
+1.	Mouse = The mouse ID (CC1xCC2_Name)
 2.	CC1 = Maternal Genome Name
 3.	CC2 = paternal Genome Name 
-4.	Name = Mouse
+4.	Name = Mouse name
 5.	fastq R1 = FASTQ file for R1
 6.	fastq R2 = FASTQ file for R2
 
